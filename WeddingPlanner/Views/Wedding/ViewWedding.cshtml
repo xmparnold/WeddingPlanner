@@ -1,0 +1,20 @@
+@model Wedding
+<a asp-controller="Wedding" asp-action="Dashboard">Back to Dashboard</a>
+<h1>Wedding of @Model.WedderOne & @Model.WedderTwo</h1>
+
+@if(Model.Creator != null)
+{
+    <h3>Scheduled by: @Model.Creator.FullName()</h3>
+}
+<h3>Date: @Model.Date</h3>
+<h3>Address: @Model.WeddingAddress</h3>
+<h5>RSVPs: @Model.Attendees.Count()</h5>
+<ul>
+    @foreach (RSVP rsvp in Model.Attendees)
+    {
+        if(rsvp.User != null)
+        {
+            <li>@rsvp.User.FullName()</li> 
+        }
+    }
+</ul>

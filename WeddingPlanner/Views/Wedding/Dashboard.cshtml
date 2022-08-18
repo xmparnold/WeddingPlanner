@@ -1,0 +1,47 @@
+@model List<Wedding>
+
+<h3>Welcome @Context.Session.GetString("Name"), UUID: @Context.Session.GetInt32("UUID")</h3>
+
+<a asp-controller="Wedding" asp-action="New">New Wedding</a>
+<h1>Weddings</h1>
+
+<table>
+    <thead>
+        <th>Wedding</th>
+        <th>Date</th>
+        <th>Guest</th>
+        <th>Action</th>
+    </thead>
+
+    <tbody>
+        
+        @foreach (Wedding wedding in Model)
+        {
+            <tr>
+
+                <td><a asp-controller="Wedding" asp-action="ViewWedding" asp-route-weddingId="@wedding.WeddingId">@wedding.WedderOne & @wedding.WedderTwo</a></td>
+                <td>@wedding.Date</td>
+                <td>@wedding.Attendees.Count()</td>
+
+                @{
+                    bool alreadyRSVP = wedding.Attendees.Any(a => a.UserId == Context.Session.GetInt32("UUID"));
+                }
+                <td>
+                    <form asp-controller="Wedding" asp-action="RSVP" asp-route-weddingId="@wedding.WeddingId" method="POST">
+                        <button>
+                            @if (alreadyRSVP)
+                            {
+                                <span>Un-RSVP</span>
+                            }
+                            else
+                            {
+                                <span>RSVP</span>
+                            }
+                        </button>
+                    </form>>
+                </td>
+            </tr>
+                   
+        }
+    </tbody>
+</table>

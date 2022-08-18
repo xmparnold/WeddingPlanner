@@ -1,0 +1,40 @@
+@model Wedding
+
+<div class="container w-75 mx-auto">
+  <h2 class="text-center">New Post</h2>
+
+  @* <form href="posts/create" method="POST"> *@
+  <form class="shadow p-3 rounded" asp-controller="Wedding" asp-action="Update" method="POST">
+    
+    <div class="mb-3">
+      <label asp-for="WedderOne"></label>
+      <span asp-validation-for="WedderOne" class="text-danger font-weight-bold">
+      </span>
+      <input class="form-control" asp-for="WedderOne" value="@Model.WedderOne">
+    </div>
+
+    <div class="mb-3">
+      <label asp-for="WedderTwo"></label>
+      <span asp-validation-for="WedderTwo" class="text-danger font-weight-bold">
+      </span>
+      <input class="form-control" asp-for="WedderTwo" value="@Model.WedderTwo">
+    </div>
+
+    <div class="mb-3">
+      <label asp-for="Date"></label>
+      <span asp-validation-for="Date" class="text-danger font-weight-bold">
+      </span>
+      <input class="form-control" asp-for="Date" value="@Model.Date">
+    </div>
+
+    <div class="mb-3">
+      <label asp-for="WeddingAddress"></label>
+      <span asp-validation-for="WeddingAddress" class="text-danger font-weight-bold">
+      </span>
+      <input class="form-control" asp-for="WeddingAddress" value="@Model.WeddingAddress">
+    </div>
+
+
+    <button class="btn btn-success">Submit</button>
+  </form>
+</div>
